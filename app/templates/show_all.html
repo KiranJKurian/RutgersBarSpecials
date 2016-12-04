@@ -39,16 +39,19 @@
                   <td>{{ bar.name }}</td>
                   <td>{{ bar.city }}</td>
                   <td>{{ bar.addr }}</td>
-                  <td>{{ bar.zip }}</td>
-                  <td>{{ bar.special.mon }}</td>
-                  <td>{{ bar.special.tues }}</td>
-                  <td>{{ bar.special.weds }}</td>
-                  <td>{{ bar.special.thurs }}</td>
-                  <td>{{ bar.special.fri }}</td>
-                  <td>{{ bar.special.sat }}</td>
-                  <td>{{ bar.special.sun }}</td>
+                  <td>{{ bar.zip }}</td>  
+                          
                </tr>
             {% endfor %}
+            {% for special_a in special %}
+               <tr>
+                  <td>{{ special_a.mon }}</td>
+                  <td>{{ special_a.bar.name}}</td>
+                  <td>{{ special_a.bar.addr }}</td>
+                  <td>{{ special_a.bar.zip }}</td>
+               </tr>
+            {% endfor %}     
+         
          </tbody>
       </table>
       

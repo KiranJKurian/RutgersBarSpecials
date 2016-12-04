@@ -8,30 +8,37 @@ app.config['SECRET_KEY'] = "Questlove-Magic"
 db = SQLAlchemy(app)
 
 class bars(db.Model):
-   id = db.Column('bar_id', db.Integer, primary_key = True)
+   id = db.Column(db.Integer, primary_key = True)
    name = db.Column(db.String(100))
    city = db.Column(db.String(50))
    addr = db.Column(db.String(200)) 
    zip = db.Column(db.String(10))
-   specials= db.relationship('special', backref='bar',lazy='dynamic')
+   special = db.relationship('special', backref='bars', lazy='dynamic')
 
-   def __init__(self, name, city, addr, zip, specials):
+   def __init__(self, name, city, addr, zip):
       self.name = name
       self.city = city
       self.addr = addr
       self.zip = zip
-      self.specials = specials
+      # How would you define the "specials" variable because if it's not defined, the program throws an error ("specials not defined")?
+      # I tried to debug using the following and resulted in "[specials]". I am not sure if it's right.
+      # http://stackoverflow.com/questions/19606745/flask-sqlalchemy-error-typeerror-incompatible-collection-type-model-is-not
+      # http://stackoverflow.com/questions/11796934/flask-sqlalchemy-typeerror-class-object-is-not-iterable
+
+
+      #self.specials = specials
+     
 
 class special(db.Model):
    id = db.Column(db.Integer, primary_key = True)
-   mon= db.Column(db.String(240))
-   tues= db.Column(db.String(240))
-   weds= db.Column(db.String(240))
-   thurs= db.Column(db.String(240))
-   fri= db.Column(db.String(240))
-   sat= db.Column(db.String(240))
-   sun= db.Column(db.String(240))
-   bar_id= db.Column(db.Integer, db.ForeignKey(bar.id))
+   mon = db.Column(db.String(240))
+   tues = db.Column(db.String(240))
+   weds = db.Column(db.String(240))
+   thurs = db.Column(db.String(240))
+   fri = db.Column(db.String(240))
+   sat = db.Column(db.String(240))
+   sun = db.Column(db.String(240))
+   bars_id = db.Column(db.Integer, db.ForeignKey(bars.id))
 
    def __init__(self, mon, tues, weds, thurs, fri, sat, sun):
       self.mon = mon
@@ -41,6 +48,7 @@ class special(db.Model):
       self.fri = fri
       self.sat = sat
       self.sun = sun
+    
 
    
 @app.route('/')
@@ -50,11 +58,12 @@ def show_all():
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
    if request.method == 'POST':
-      if not request.form['name'] or not request.form['city'] or not request.form['addr']:
+      if not request.form['name'] or not request.form['city'] or not request.form['addr'] or not request.form['zip']:
          flash('Please enter all the fields', 'error')
       else:
-         bar = bars(request.form['name'], request.form['city'], request.form['addr'], request.form['zip'])
-         
+         specials_a = special(request.form['special_mon'], request.form['special_tues'], request.form['special_weds'], request.form['special_thurs'], request.form['special_fri'], request.form['special_sat'], request.form['special_sun']) 
+         bar = bars(request.form['name'], request.form['city'], request.form['addr'], request.form['zip']) 
+         specials_a.bar_id = bar.id;             
          db.session.add(bar)
          db.session.commit()
          flash('Record was successfully added')
