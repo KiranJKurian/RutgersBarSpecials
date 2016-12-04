@@ -21,7 +21,15 @@
                <th>Name</th>
                <th>City</th>
                <th>Address</th>
-               <th>zip</th>
+               <th>Zip</th>
+               <th>Monday Special<th>
+               <th>Tuesday Special<th>
+               <th>Wednesday Special<th>
+               <th>Thursday Special<th>
+               <th>Friday Special<th>
+               <th>Saturday Special<th>
+               <th>Sunday Special<th>
+                  
             </tr>
          </thead>
          
@@ -32,6 +40,13 @@
                   <td>{{ bar.city }}</td>
                   <td>{{ bar.addr }}</td>
                   <td>{{ bar.zip }}</td>
+                  <td>{{ bar.special.mon }}</td>
+                  <td>{{ bar.special.tues }}</td>
+                  <td>{{ bar.special.weds }}</td>
+                  <td>{{ bar.special.thurs }}</td>
+                  <td>{{ bar.special.fri }}</td>
+                  <td>{{ bar.special.sat }}</td>
+                  <td>{{ bar.special.sun }}</td>
                </tr>
             {% endfor %}
          </tbody>

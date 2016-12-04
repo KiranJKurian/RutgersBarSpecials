@@ -13,13 +13,36 @@ class bars(db.Model):
    city = db.Column(db.String(50))
    addr = db.Column(db.String(200)) 
    zip = db.Column(db.String(10))
+   specials= db.relationship('special', backref='bar',lazy='dynamic')
 
-   def __init__(self, name, city, addr,zip):
+   def __init__(self, name, city, addr, zip, specials):
       self.name = name
       self.city = city
       self.addr = addr
       self.zip = zip
+      self.specials = specials
 
+class special(db.Model):
+   id = db.Column(db.Integer, primary_key = True)
+   mon= db.Column(db.String(240))
+   tues= db.Column(db.String(240))
+   weds= db.Column(db.String(240))
+   thurs= db.Column(db.String(240))
+   fri= db.Column(db.String(240))
+   sat= db.Column(db.String(240))
+   sun= db.Column(db.String(240))
+   bar_id= db.Column(db.Integer, db.ForeignKey(bar.id))
+
+   def __init__(self, mon, tues, weds, thurs, fri, sat, sun):
+      self.mon = mon
+      self.tues = tues
+      self.weds = weds
+      self.thurs = thurs
+      self.fri = fri
+      self.sat = sat
+      self.sun = sun
+
+   
 @app.route('/')
 def show_all():
    return render_template('show_all.html', bars = bars.query.all() )
