@@ -6,5 +6,6 @@ app = Flask(__name__)
 @app.route('/bar/<name>')
 def bar(name=None):
 	return render_template('bar.html', name=name)
-	
-app.run()
+
+if __name__ == '__main__':	
+	app.run()
