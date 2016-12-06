@@ -1,18 +1,21 @@
 from flask import Flask
 from flask import render_template
-from flask import pypyodbc
+import sqlite3
 app = Flask(__name__)
 
 @app.route('/bar/')
 @app.route('/bar/<name>')
 def bar(name=None):
-	connection = pypyodbc.connect('Server=bars3.sqlite;''uid=Questlove-Magic;')
-	cursor = connection.cursor()
-	SQLCommand = ("SELECT name")
-	results = cursor.fetchall()
-	print("The bar's name is " + results[0])
-	connection.close()
+	
 	return render_template('bar.html', name=name)
+	sqlite_file = '/Users/Johanna/Documents/GitHub/RutgersBarSpecials/app/bars.sqlite3'
+	table_name= 'bars'
+	connection = sqlite3.connect(sqlite_file)
+	c = connection.cursor()
+	c.execute('PRAGMA TABLE_INFO({})'.format(table_name))
+	names = [tup[1] for tup in c.fetchall()]
+	print(names)
+	connection.close()
 
 if __name__ == '__main__':	
 	app.run()
