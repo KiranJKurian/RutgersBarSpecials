@@ -1,23 +1,23 @@
 <html>
- 
+
  <head>
  	<title>Rutgers Bar App</title>
  	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bar.css')}}"/>
  </head>
- 
+
  <body id="bod">
- 	
+
  <div id="mainDiv">
- 	
+
  	<div id="header">
  		<h1 id="title"><i> Rutgers University Bar Specials</i> </h1>
  		<h2 id="demo3"></h2>
- 		<script> 
+ 		<script>
  			var d=new Date();
  			document.getElementById("demo3").innerHTML=d.toDateString();
  		</script>
  	</div>
- 	
+
  	<ul id="navbar">
 		<li><a href="javascript:void(0)" class="navele" onclick="openDay('Monday')">Monday</a></li>
  		<li><a href="javascript:void(0)" class="navele" onclick="openDay('Tuesday')">Tuesday</a></li>
@@ -27,9 +27,9 @@
  		<li><a href="javascript:void(0)" class="navele" onclick="openDay('Saturday')">Saturday</a></li>
  		<li><a href="javascript:void(0)" class="navele" onclick="openDay('Sunday')">Sunday</a></li>
  	</ul>
- 	
- 	
- 	
+
+
+
  	<div id="Monday" class="days">
 		<p class ="deals">
 			{{name}}
@@ -44,31 +44,36 @@
  				<p>$5 for a pint</p>
  		</div> -->
  	</div>
- 	
+
  	<div id="Tuesday" class="days">
  		<h1>Tuesday's Deals:</h1>
+ 		<p>
+ 			ID: {{barOne.id}}
+ 			Name: {{barOne.name}}
+ 			Address: {{barOne.address}}
+ 			Zip: {{barOne.zip}}
  	</div>
- 	
+
 	<div id="Wednesday" class="days">
  		<h1>Wednesday's Deals:</h1>
  	</div>
- 	
+
  	<div id="Thursday" class="days">
  		<h1>Thursday's Deals:</h1>
  	</div>
- 	
+
  	<div id="Friday" class="days">
  		<h1>Friday's Deals:</h1>
  	</div>
- 	
+
  	<div id="Saturday" class="days">
  		<h1>Saturday's Deals:</h1>
  	</div>
- 	
+
  	<div id="Sunday" class="days">
  		<h1>Sunday's Deals:</h1>
  	</div>
- 	
+
 	<script>
  		function openDay(d){
  			var i, days, navele;

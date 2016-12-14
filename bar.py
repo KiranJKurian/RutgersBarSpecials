@@ -7,9 +7,10 @@ app = Flask(__name__)
 @app.route('/bar/<name>')
 def bar(name=None):
 	from dummyData import bars
-	name = bars['name']
-	return render_template('bar.html', name=name)
+	name = bars[0]['name']
+	barOne = bars[0]
+	return render_template('bar.html', name=name, barOne = barOne)
 
 
-if __name__ == '__main__':	
+if __name__ == '__main__':
 	app.run()
