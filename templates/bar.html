@@ -31,15 +31,18 @@
  	
  	
  	<div id="Monday" class="days">
- 		<h1>Monday's Deals:</h1>
- 		<div class=deals>
+		<p class ="deals">
+			{{name}}
+		</p>
+ 		<!--<h1>Monday's Deals:</h1>
+ 		<div class="deals">
  			<h1>Old Queens</h1>
  				<p>Buy one get one beers</p>
  		</div>
  		<div class="deals">
  			<h1>Kelly's</h1>
  				<p>$5 for a pint</p>
- 		</div>
+ 		</div> -->
  	</div>
  	
  	<div id="Tuesday" class="days">
@@ -76,9 +79,9 @@
  			navele = document.getElementsByClassName("navele");
  			for (i = 0; i < navele.length; i++) {
  				navele[i].className = navele[i].className.replace(" active", "");
- 		}
+			}
  			document.getElementById(d).style.display = "block";
-}
+		}
  </script>
 
 </div>
