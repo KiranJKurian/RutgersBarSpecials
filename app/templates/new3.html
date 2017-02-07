@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+   <body>
+   
+      <h3>Add a Special</h3>
+      <hr/>
+      
+      {%- for category, message in get_flashed_messages(with_categories = true) %}
+         <div class = "alert alert-danger">
+            {{ message }}
+         </div>
+      {%- endfor %}
+      
+      <form action = "{{ request.path }}" method = "post">
+         <label for = "day">Day</label><br>
+         <input type = "text" name = "day"/><br>
+         <label for = "special">Special</label><br>
+         <textarea name = "special"></textarea><br>
+         <label for = "price">Price</label><br>
+         <input type = "text" name = "price"/><br>
+         <label for = "bar">Bar</label><br>
+         <input type = "text" name = "bar"/><br>
+         <input type = "submit" value = "Add Special" />
+      </form>
+      
+   </body>
+</html>
